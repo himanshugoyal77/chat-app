@@ -39,7 +39,10 @@ const WhatsAppChatWindow = ({
   // Scroll to bottom when messages change
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      const messagesContainer = messagesEndRef.current.parentElement;
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
     }
   }, [messages]);
 
@@ -104,7 +107,7 @@ const WhatsAppChatWindow = ({
 
           {/* Message Area with WhatsApp-style background */}
           <div
-            className="flex-1 overflow-y-auto p-3 bg-[#e5ddd5] bg-opacity-90 bg-[url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e.png')]"
+            className="h-[75vh] overflow-y-auto p-3 bg-[#e5ddd5] bg-opacity-90 bg-[url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e.png')]"
             id="messages-container"
           >
             {loading ? (
