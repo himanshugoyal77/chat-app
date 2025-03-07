@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useRef, useEffect } from "react";
-import { User } from "@supabase/supabase-js";
+import { User as SupabaseUser } from "@supabase/supabase-js";
 import {
   Search,
   MoreVertical,
@@ -9,6 +9,11 @@ import {
   Send,
   Smile,
 } from "lucide-react";
+
+interface User extends SupabaseUser {
+  avatar_url?: string;
+  username: string;
+}
 
 interface ChatWindowProps {
   partner: { id: string; username: string; avatar_url?: string } | null;
@@ -74,7 +79,7 @@ const WhatsAppChatWindow = ({
       {partner ? (
         <>
           <div className="px-4 h-16 border-b border-gray-200 flex items-center bg-white">
-            <div className="relative w-10 h-10 mr-3">
+            <div className="relative w-8 h-8 md:w-10 md:h-10 mr-3">
               {partner.avatar_url ? (
                 <Image
                   src={partner.avatar_url}
@@ -85,7 +90,7 @@ const WhatsAppChatWindow = ({
                   priority
                 />
               ) : (
-                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300 flex items-center justify-center">
                   <span className="text-teal-600 text-lg">
                     {partner.username.charAt(0).toUpperCase()}
                   </span>
@@ -93,19 +98,20 @@ const WhatsAppChatWindow = ({
               )}
             </div>
             <div className="flex-1">
-              <h2 className="text-base font-medium leading-5">
+              <h2 className="text-sm md:text-base font-medium leading-5">
                 {partner.username}
               </h2>
               <p className="text-xs">online</p>
             </div>
 
             <div className="flex items-center space-x-4">
-              <Search className="h-5 w-5 cursor-pointer" />
-              <MoreVertical className="h-5 w-5 cursor-pointer" />
+              <Search className="h-4 w-4 md:h-5 md:w-5 cursor-pointer" />
+              <MoreVertical className="h-4 w-4 md:h-5 md:w-5 cursor-pointer" />
             </div>
           </div>
 
           {/* Message Area with WhatsApp-style background */}
+
           <div
             className="h-[75vh] overflow-y-auto p-3 bg-[#e5ddd5] bg-opacity-90 bg-[url('https://web.whatsapp.com/img/bg-chat-tile-light_a4be512e.png')]"
             id="messages-container"
@@ -149,9 +155,13 @@ const WhatsAppChatWindow = ({
                             : "justify-start"
                         }`}
                       >
-                        <div className="relative w-8 h-8 mr-3">
+                        <div className="relative w-6 h-6 md:w-8 md:h-8 mr-3">
                           <Image
-                            src={partner.avatar_url}
+                            src={
+                              isCurrentUser
+                                ? user?.avatar_url || "/default-avatar.png"
+                                : partner.avatar_url || "/default-avatar.png"
+                            }
                             alt={partner.username}
                             className="rounded-full object-cover"
                             fill
@@ -210,8 +220,8 @@ const WhatsAppChatWindow = ({
           >
             <div className="flex items-center gap-2 bg-white rounded-full p-1 pl-3">
               <div className="flex items-center gap-2">
-                <Smile className="h-5 w-5 text-gray-500 cursor-pointer" />
-                <Paperclip className="h-5 w-5 text-gray-500 cursor-pointer" />
+                <Smile className="h-4 w-4 md:h-5 md:w-5 text-gray-500 cursor-pointer" />
+                <Paperclip className="h-4 w-4 md:h-5 md:w-5 text-gray-500 cursor-pointer" />
               </div>
               <input
                 type="text"
@@ -223,16 +233,16 @@ const WhatsAppChatWindow = ({
               {newMessage.trim() ? (
                 <button
                   type="submit"
-                  className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-600 flex items-center justify-center"
                 >
-                  <Send className="h-5 w-5 text-white" />
+                  <Send className="h-4 w-4 md:h-5 md:w-5 text-white" />
                 </button>
               ) : (
                 <button
                   type="button"
-                  className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-600 flex items-center justify-center"
                 >
-                  <Mic className="h-5 w-5 text-white" />
+                  <Mic className="h-4 w-4 md:h-5 md:w-5 text-white" />
                 </button>
               )}
             </div>

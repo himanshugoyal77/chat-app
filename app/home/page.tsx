@@ -30,6 +30,11 @@ export default function ChatPage() {
   const [newMessage, setNewMessage] = useState("");
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onSearch = (query: string) => {
+    setSearchQuery(query);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -87,7 +92,7 @@ export default function ChatPage() {
                 .single();
 
             if (lastMessageError) {
-              console.error("Error fetching last message:", lastMessageError);
+              console.log("Error fetching last message:", lastMessageError);
               return { ...userItem, last_message: null };
             }
 
@@ -277,14 +282,22 @@ export default function ChatPage() {
         {/* Chat window */}
         <div className="w-full flex h-screen bg-white">
           <UsersList
-            users={users}
+            users={
+              searchQuery
+                ? users.filter((user) =>
+                    user.username
+                      .toLowerCase()
+                      .includes(searchQuery.toLowerCase())
+                  )
+                : users
+            }
             loading={loadingUsers}
             currentUser={user}
             selectedUser={selectedPartner}
             onUserSelect={handleUserSelect}
-            searchQuery={""}
-            onSearch={() => {}}
-            filtered={true}
+            searchQuery={searchQuery}
+            onSearch={onSearch}
+            filtered={false}
             setFiltered={() => {}}
           />
 

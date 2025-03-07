@@ -59,7 +59,7 @@ export default function Home() {
         <Button
           onClick={handleLogin}
           disabled={loading}
-          className="font-semibold px-8"
+          className="font-semibold px-8 cursor-pointer"
         >
           {loading ? "Logging in..." : "Login"}
         </Button>
@@ -80,7 +80,7 @@ export default function Home() {
           <Button
             onClick={handleLogin}
             disabled={loading}
-            className="mt-10 px-8 text-xl rounded-xl h-12 bg-gradient-to-r from-[#00a884] to-[#02c26a] hover:from-[#468267] hover:to-[#00a884] transition-all ease-in-out duration-300"
+            className="mt-10 cursor-pointer px-8 text-xl rounded-xl h-12 bg-gradient-to-r from-[#00a884] to-[#02c26a] hover:from-[#468267] hover:to-[#00a884] transition-all ease-in-out duration-300"
           >
             {loading ? "Signing in..." : "Get Started"}
           </Button>
