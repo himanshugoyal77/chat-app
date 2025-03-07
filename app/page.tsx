@@ -40,7 +40,7 @@ export default function Home() {
     setLoading(true);
     const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/home` },
+      options: { redirectTo: `https://periskope-chat-app.vercel.app/home` },
     });
 
     if (error) {
