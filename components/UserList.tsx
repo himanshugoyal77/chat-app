@@ -110,7 +110,7 @@ const UserList = ({
       {/* User list sidebar */}
       <div
         className={`
-            w-full md:w-80 lg:w-96 border-r bg-gray-50 flex-shrink-0
+            w-full md:w-80 lg:w-96 border-r border-gray-200 bg-gray-50 flex-shrink-0
             ${
               sidebarOpen ? "fixed md:relative inset-0 z-40" : "hidden md:block"
             }
