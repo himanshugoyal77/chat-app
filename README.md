@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Periskope Chat
+A real-time chat application built with Next.js and Supabase, featuring Google authentication for seamless user login. The app enables instant messaging with real-time updates, leveraging Supabase's database and authentication services.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Demo 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://github.com/user-attachments/assets/6a2def8e-d8cb-443b-b460-c527b85ee99d
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Schema structure
+![image](https://github.com/user-attachments/assets/de88a68e-9a84-4796-a5fa-9d5ffcc84381)
+## Tech Stack
 
-## Learn More
+**Client:** Next.js, TypeScript, TailwindCss, Shadcn-ui
 
-To learn more about Next.js, take a look at the following resources:
+**Backend:**: Supabase
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Authentication:**: google oAuth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
